@@ -31,7 +31,7 @@ Route::prefix('{tenant:slug}/{event:slug}')
 
         Route::get('/', EventLanding::class)->name('landing');
 
-        Route::get('/match/{game}', PublicMatch::class)->name('match');
+        Route::get('/match/{game}', PublicMatch::class)->name('match')->withoutScopedBindings();;
 
         Route::get('/{category}', PublicEvent::class)->name('category'); 
 
