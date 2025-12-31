@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Filament\Pages\Auth;
+
+use Filament\Auth\Pages\EditProfile as BaseEditProfile;
+use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Schema;
+
+
+class EditProfile extends BaseEditProfile
+{
+    public function form(Schema $schema): Schema
+    {
+        return $schema
+            ->components([
+
+                $this->getNameFormComponent(),
+                $this->getEmailFormComponent(),
+                
+                TextInput::make('phone_number')
+                    ->label('Nomor WhatsApp / Telepon')
+                    ->tel()
+                    ->maxLength(20),
+                
+                $this->getPasswordFormComponent(),
+                $this->getPasswordConfirmationFormComponent(),
+            ]);
+    }
+}

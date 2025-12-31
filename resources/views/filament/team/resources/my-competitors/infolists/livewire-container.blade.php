@@ -1,0 +1,1 @@
+@livewire('event-stats', ['record' => $record])

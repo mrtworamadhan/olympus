@@ -1,0 +1,1 @@
+@livewire('event-standings', ['record' => $record])
