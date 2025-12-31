@@ -9,6 +9,7 @@ use App\Filament\Team\Resources\MasterClubs\Schemas\MasterClubForm;
 use App\Filament\Team\Resources\MasterClubs\Tables\MasterClubsTable;
 use App\Models\MasterClub;
 use BackedEnum;
+use Illuminate\Database\Eloquent\Builder;
 use UnitEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -25,6 +26,11 @@ class MasterClubResource extends Resource
     protected static ?int $navigationSort = 1;
 
     protected static ?string $recordTitleAttribute = 'name';
+
+     public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->where('user_id', auth()->id());
+    }
 
     public static function form(Schema $schema): Schema
     {

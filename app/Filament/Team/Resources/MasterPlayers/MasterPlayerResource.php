@@ -9,6 +9,7 @@ use App\Filament\Team\Resources\MasterPlayers\Schemas\MasterPlayerForm;
 use App\Filament\Team\Resources\MasterPlayers\Tables\MasterPlayersTable;
 use App\Models\MasterPlayer;
 use BackedEnum;
+use Illuminate\Database\Eloquent\Builder;
 use UnitEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -27,6 +28,11 @@ class MasterPlayerResource extends Resource
 
     protected static string | UnitEnum | null $navigationGroup  = 'Team Management';
     protected static ?int $navigationSort = 2;
+
+     public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->where('user_id', auth()->id());
+    }
 
     public static function form(Schema $schema): Schema
     {
